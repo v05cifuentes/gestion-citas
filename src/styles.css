@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback');
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
-  background-image: url('./assets/img/background.png'); /* Ruta de tu imagen de fondo */
+  font-family: 'Source Sans 3', sans-serif !important;
+  background-color: #f3f3f3;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Source Sans 3', sans-serif; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
