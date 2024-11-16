@@ -1,16 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  url = 'http://localhost/pet_shop/backEnd/controlador/login.php'
+  url = 'http://localhost:8080/gestionCitas/Reservas/?route=login'
 
   constructor(private http: HttpClient) { }
 
-  consultar(email: any, clave: any) {
-    return this.http.get(`${this.url}?email=${email}&clave=${clave}`);
+  consultar(idUsuario: string, clave: string) {
+    const body = { idUsuario, clave }; 
+    return this.http.post(this.url, body);
   }
 }

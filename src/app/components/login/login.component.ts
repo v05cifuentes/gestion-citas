@@ -10,16 +10,15 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  identificacion: any;
+  idUsuario: any;
   clave: any;
   error: boolean = false;
   user: any;
 
   usuario = {
+    id: '',
     nombre: '',
-    direccion: '',
-    celular: '',
-    identificacion: '',
+    idUsuario: '',
     email: '',
     rol: '',
     clave: '',
@@ -32,25 +31,21 @@ export class LoginComponent {
   ) {  }
 
   ngOnInit(): void {
-    sessionStorage.setItem('id_usuario', "");
+    sessionStorage.setItem('id', "");
     sessionStorage.setItem('nombre', "");
-    sessionStorage.setItem('direccion', "");
-    sessionStorage.setItem('celular', "");
-    sessionStorage.setItem('identificacion', "");
+    sessionStorage.setItem('idUsuario', "");
     sessionStorage.setItem('email', "");
     sessionStorage.setItem('rol', "");
   }
 
   consulta(tecla: any, form: NgForm){
   if(tecla == '13' || tecla == ''){
-    this.loginService.consultar(this.identificacion, this.clave).subscribe((resultado: any) =>{
+    this.loginService.consultar(this.idUsuario, this.clave).subscribe((resultado: any) =>{
       this.user = resultado;
       if(this.user[0].validar == "valida"){
-        sessionStorage.setItem('id_usuario', this.user[0]['id_usuario']);
+        sessionStorage.setItem('id', this.user[0]['id']);
         sessionStorage.setItem('nombre', this.user[0]['nombre']);
-        sessionStorage.setItem('direccion', this.user[0]['direccion']);
-        sessionStorage.setItem('celular', this.user[0]['celular']);
-        sessionStorage.setItem('identificacion', this.user[0]['identificacion']);
+        sessionStorage.setItem('idUsuario', this.user[0]['idUsuario']);
         sessionStorage.setItem('email', this.user[0]['email']);
         sessionStorage.setItem('rol', this.user[0]['rol']);
         this.router.navigate(['/dashboard']);
