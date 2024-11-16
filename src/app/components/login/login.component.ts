@@ -40,7 +40,7 @@ export class LoginComponent {
 
   consulta(tecla: any, form: NgForm){
   if(tecla == '13' || tecla == ''){
-    this.loginService.consultar(this.idUsuario, this.clave).subscribe((resultado: any) =>{
+    this.loginService.login(this.idUsuario, this.clave).subscribe((resultado: any) =>{
       this.user = resultado;
       if(this.user[0].validar == "valida"){
         sessionStorage.setItem('id', this.user[0]['id']);
