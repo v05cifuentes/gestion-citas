@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatTableModule } from '@angular/material/table';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MatTableModule } from '@angular/material/table';
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

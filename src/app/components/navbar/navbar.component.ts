@@ -45,17 +45,17 @@ export class NavbarComponent {
     const currentRoute = this.router.url.split('/')[1]; // Obtén la ruta activa
     
     switch (currentRoute) {
-      case 'dashboard':
-        this.titulo = '¡Bienvenido!';
-        this.subtitulo = 'Sistema de reservas'; // O puedes dejarlo vacío si no deseas subtítulo
+      case 'user':
+        this.titulo = 'Usuarios';
+        this.subtitulo = '';
         break;
       case 'admin_reservas':
-        this.titulo = 'Administrar reservas';
+        this.titulo = '';
         this.subtitulo = ''; // No subtítulo
         break;
       default:
-        this.titulo = 'Título Principal';
-        this.subtitulo = 'Subtítulo que se puede modificar';
+        this.titulo = '¡Bienvenido!';
+        this.subtitulo = 'Administrar reservas';
         break;
     }
   }

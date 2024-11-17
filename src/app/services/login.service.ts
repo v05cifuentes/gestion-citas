@@ -9,7 +9,7 @@ import { RespuestaModel } from '../models/Respuesta.model';
 })
 export class LoginService {
 
-    apiUrl = 'http://localhost/reservas/?route=login'
+    apiUrl = 'http://localhost:8080/gestionCitas/Reservas/?route=login'
     constructor(private apiService: ApiService) { }
 
     // Método para login usando el método genérico postRequest
