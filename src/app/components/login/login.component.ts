@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RespuestaModel } from 'src/app/models/Respuesta.model';
+import { UsuarioModel } from 'src/app/models/UsuarioLogin.model';
+import Utils from 'src/app/services/base/utils';
 import { LoginService } from 'src/app/services/login.service';
 
 
@@ -10,8 +13,9 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  idUsuario: any;
-  clave: any;
+
+  idUsuario: string = "";
+  clave: string = "";
   error: boolean = false;
   user: any;
 
@@ -25,35 +29,31 @@ export class LoginComponent {
   }
 
   constructor(
-  private loginService: LoginService,
-  private router: Router,
+    private loginService: LoginService,
+    private router: Router
+  ) { }
 
-  ) {  }
-
-  ngOnInit(): void {
-    sessionStorage.setItem('id', "");
-    sessionStorage.setItem('nombre', "");
-    sessionStorage.setItem('idUsuario', "");
-    sessionStorage.setItem('email', "");
-    sessionStorage.setItem('rol', "");
-  }
-
-  consulta(tecla: any, form: NgForm){
-  if(tecla == '13' || tecla == ''){
-    this.loginService.login(this.idUsuario, this.clave).subscribe((resultado: any) =>{
-      this.user = resultado;
-      if(this.user[0].validar == "valida"){
-        sessionStorage.setItem('id', this.user[0]['id']);
-        sessionStorage.setItem('nombre', this.user[0]['nombre']);
-        sessionStorage.setItem('idUsuario', this.user[0]['idUsuario']);
-        sessionStorage.setItem('email', this.user[0]['email']);
-        sessionStorage.setItem('rol', this.user[0]['rol']);
-        this.router.navigate(['/dashboard']);
-        }else{
-          this.error = true;
+  consulta(tecla: any, form: NgForm) {
+    if (tecla == '13' || tecla == '') {
+      // Método que realiza la llamada al servicio
+      this.loginService.login(this.idUsuario, this.clave).subscribe(
+        (response: RespuestaModel<UsuarioModel>) => {
+          if (response.status === 'success') {
+            const usuario = response.data;
+            window.sessionStorage.setItem('InfoUsuario', JSON.stringify(usuario ?? ""));
+            if (!Utils.isEmpty(window.sessionStorage.getItem('token'))) {
+              this.router.navigate(['dashboard']);
+            }
+          } else {
+            console.warn('Mensaje de error del servidor:', response.message);
+          }
+        },
+        error => {
+          console.error('Error en la consulta:', error);
         }
-      });
+      );
     }
+
     if (form.invalid) {
       for (const control of Object.keys(form.controls)) {
         form.controls[control].markAsTouched();
@@ -64,7 +64,7 @@ export class LoginComponent {
   }
 
   forgotPassword() {
-    
+
   }
 
 

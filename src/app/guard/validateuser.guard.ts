@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import Utils from '../services/base/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +9,23 @@ import { Observable } from 'rxjs';
 
 export class validateUserGuard implements CanActivate {
 
-  id_usuario: any;
-
-  constructor(private router:Router){}
+  constructor(private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      this.id_usuario = sessionStorage.getItem('id_usuario');
+    // Función para verificar la autenticación
+    const isAuthenticated = this.isUserAuthenticated();
+    if (!isAuthenticated) {
+      this.router.navigate(['login']);
+      return false;
+    }
+    return true;
+  }
 
-      if(this.id_usuario == null || this.id_usuario==""){
-        this.router.navigate(['login']);
-        return false;
-      }
-      return true;
+  // Helper function to check if the user is authenticated
+  private isUserAuthenticated(): boolean {
+    return !Utils.isEmpty(sessionStorage.getItem('token')) && !Utils.isEmpty(sessionStorage.getItem('InfoUsuario'));
   }
 }

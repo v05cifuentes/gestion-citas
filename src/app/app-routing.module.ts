@@ -7,21 +7,19 @@ import { validateUserGuard } from './guard/validateuser.guard';
 import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
-
-
   {
-    path: '', component: NavbarComponent,
+    path: '', component: NavbarComponent, canActivate: [validateUserGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent},
-      { path: 'user', component: UserComponent},
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      { path: 'dashboard', component: DashboardComponent, canActivate: [validateUserGuard] },
+      { path: 'user', component: UserComponent, canActivate: [validateUserGuard] },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   },
   {
     path: 'login', component: LoginComponent
   },
 
-    { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'login' }
 
 ];
 
