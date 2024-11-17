@@ -36,14 +36,8 @@ export class NavbarComponent {
     this.mostrarMenu = !this.mostrarMenu;
   }
 
-  cerrar() {
-    sessionStorage.setItem('id_usuario', "");
-    sessionStorage.setItem('nombre', "");
-    sessionStorage.setItem('direccion', "");
-    sessionStorage.setItem('celular', "");
-    sessionStorage.setItem('identificacion', "");
-    sessionStorage.setItem('email', "");
-    sessionStorage.setItem('rol', "");
+  cerrarSesion() {
+    window.sessionStorage.clear();
     this.router.navigate(['login']);
   }
 
