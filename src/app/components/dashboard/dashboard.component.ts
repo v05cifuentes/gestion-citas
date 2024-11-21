@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,24 +8,24 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
-  cards = [
-    { title: 'Resumen de Ventas', selected: false },
-    { title: 'Agenda', selected: false },
-    { title: 'Inventario de Productos', selected: false }
+  topCards = [
+    { key: 'agenda', title: 'Agenda Salones', image: '../../../assets/holi.svg', route: '' },
+    { key: 'salones', title: 'Admin Salones', image: '../../../assets/vectorpaint.svg', route: '' },
+    { key: 'usuario', title: 'Usuarios', image: '../../../assets/usuarios-paint.svg', route: '/user' },
   ];
 
-  selectedCard: string = 'ventas';
+  selectedCard: string = 'agenda';
 
-  displayedColumns: string[] = ['salon', 'fecha', 'estado', 'acciones'];  // Las columnas que se mostrarán
+  columns = [
+    { key: 'salon', label: 'Nombre del Salón' },
+    { key: 'fecha', label: 'Fecha de Reserva' },
+    { key: 'estado', label: 'Estado' },
+    { key: 'acciones', label: 'Acciones' }
+  ];
   
-  dataSource = [
-    { salon: 'A101', fecha: '2024-11-11', estado: 'Pendiente', acciones: 'Revisar' },
-    { salon: 'B202', fecha: '2024-11-12', estado: 'Aprobado', acciones: 'Revisar' },
-    { salon: 'C303', fecha: '2024-11-13', estado: 'Rechazado', acciones: 'Revisar' },
-  ];
+  displayedColumns = this.columns.map(column => column.key);
 
   selectCard(card: string) {
-
     this.selectedCard = card;
   }
 }

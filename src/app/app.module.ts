@@ -10,6 +10,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatTableModule } from '@angular/material/table';
 import { UserComponent } from './components/user/user.component';
+import { CardComponent } from './components/card/card.component';
+import { AgendaSalonesComponent } from './components/agenda-salones/agenda-salones.component';
+import { CardSalonComponent } from './components/card-salon/card-salon.component';
 
 
 @NgModule({
@@ -18,14 +21,19 @@ import { UserComponent } from './components/user/user.component';
     LoginComponent,
     NavbarComponent,
     DashboardComponent,
-    UserComponent
+    UserComponent,
+    CardComponent,
+    AgendaSalonesComponent,
+    CardSalonComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

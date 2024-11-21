@@ -49,6 +49,10 @@ export class NavbarComponent {
         this.titulo = 'Usuarios';
         this.subtitulo = '';
         break;
+      case 'agenda':
+        this.titulo = 'Agenda Salones';
+        this.subtitulo = '';
+        break;
       case 'admin_reservas':
         this.titulo = '';
         this.subtitulo = ''; // No subtítulo

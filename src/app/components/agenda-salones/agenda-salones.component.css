@@ -1,0 +1,12 @@
+/* Establecer el margen por defecto a 5px */
+.card-spacing {
+  margin-bottom: 30px;
+
+}
+
+/* Para pantallas menores a 1366px x 647px, eliminar el margen */
+@media (max-width: 1366px) and (max-height: 647px) {
+  .card-spacing {
+    margin-bottom: 0;
+  }
+}

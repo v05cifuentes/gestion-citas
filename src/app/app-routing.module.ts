@@ -5,6 +5,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { validateUserGuard } from './guard/validateuser.guard';
 import { UserComponent } from './components/user/user.component';
+import { AgendaSalonesComponent } from './components/agenda-salones/agenda-salones.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent, canActivate: [validateUserGuard] },
       { path: 'user', component: UserComponent, canActivate: [validateUserGuard] },
+      { path: 'agenda', component: AgendaSalonesComponent, canActivate: [validateUserGuard] },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
     ]
   },
